@@ -94,10 +94,27 @@ class ViewController: UIViewController {
       self.imageView.image = finalImage
     }
       
+    let uploadAction = UIAlertAction(title: "Upload", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      let post = PFObject(className: "Post")
+      post["text"] = "image posts"
+      
+      if let image = self.imageView.image,
+      data = UIImageJPEGRepresentation(image, 1.0){
+        let file = PFFile(name: "post.jpeg", data: data)
+        post["image"] = file
+      }
+      post.saveInBackgroundWithBlock({ (succeed, error) -> Void in
+        if error != nil{
+          println("Error durring save")
+        }
+      })
+      }
+      
+      alert.addAction(uploadAction)
       alert.addAction(cameraAction)
       alert.addAction(colorInvertAction)
       alert.addAction(sepiaAction)
-      alert.addAction(colorMapAction)
+      //alert.addAction(colorMapAction)
       
       
       self.picker.delegate = self
