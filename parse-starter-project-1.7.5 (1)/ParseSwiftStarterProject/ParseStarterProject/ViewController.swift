@@ -9,8 +9,11 @@ import Parse
 
 class ViewController: UIViewController {
   
+  @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+  @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+  @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+  @IBOutlet weak var topConstraint: NSLayoutConstraint!
   @IBOutlet weak var alertButton: UIButton!
-  
   @IBOutlet weak var imageView: UIImageView!
   
   let picker : UIImagePickerController = UIImagePickerController()
@@ -108,18 +111,24 @@ class ViewController: UIViewController {
           println("Error durring save")
         }
       })
+    }
+      
+      let filterAction = UIAlertAction(title: "Filter", style: UIAlertActionStyle.Default) { (alert) -> Void in
+       self.filterMode()
       }
+      
+      
       
       alert.addAction(uploadAction)
       alert.addAction(cameraAction)
       alert.addAction(colorInvertAction)
       alert.addAction(sepiaAction)
+      alert.addAction(filterAction)
       //alert.addAction(colorMapAction)
       
       
       self.picker.delegate = self
       self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-      
       
       
       
@@ -146,7 +155,25 @@ class ViewController: UIViewController {
     self.presentViewController(alert, animated: true, completion : nil)
     
   }
+  func filterMode() {
+    leadingConstraint.constant = 40
+    trailingConstraint.constant = -40
+    topConstraint.constant = 40
+    bottomConstraint.constant = 40
+    
+    UIView.animateWithDuration(0.3, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
+    
+    let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "CloseFilterMode")
+    navigationItem.rightBarButtonItem = doneButton
+  }
+  
+  func closeFilterMode() {
+    println("closing")
+  }
 }
+
 
 extension ViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -22,7 +23,7 @@
                                 <rect key="frame" x="60" y="60" width="480" height="480"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMt-nd-xxs">
-                                <rect key="frame" x="277" y="562" width="46" height="30"/>
+                                <rect key="frame" x="277" y="513" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -31,7 +32,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xh8-Uf-kAM">
-                                <rect key="frame" x="0.0" y="467" width="600" height="100"/>
+                                <rect key="frame" x="13" y="-55" width="38" height="45"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FYZ-N9-PFP">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -56,13 +57,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="BET-Nd-bM9" secondAttribute="centerY" id="7WK-6i-NhC"/>
+                            <constraint firstItem="BET-Nd-bM9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="44" id="DGN-dr-Ep7"/>
                             <constraint firstAttribute="centerX" secondItem="GMt-nd-xxs" secondAttribute="centerX" id="ISz-Eq-LNQ"/>
+                            <constraint firstItem="BET-Nd-bM9" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="-44" id="MEf-f4-lgl"/>
                             <constraint firstAttribute="centerX" secondItem="xh8-Uf-kAM" secondAttribute="centerX" id="auk-jW-Flv"/>
-                            <constraint firstAttribute="centerX" secondItem="BET-Nd-bM9" secondAttribute="centerX" id="dWt-Sj-vrw"/>
+                            <constraint firstItem="BET-Nd-bM9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="60" id="hVa-yC-LB1"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xh8-Uf-kAM" secondAttribute="bottom" constant="-100" id="kMY-9S-MvW"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GMt-nd-xxs" secondAttribute="bottom" constant="8" id="osD-tC-bY6"/>
                             <constraint firstItem="BET-Nd-bM9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.8" id="qGP-42-kcw"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="BET-Nd-bM9" secondAttribute="bottom" constant="11" id="qSZ-Fh-Rer"/>
                             <constraint firstItem="BET-Nd-bM9" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="vRI-db-NlW"/>
                         </constraints>
                         <variation key="default">
@@ -80,7 +83,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="irf-2Z-WgE"/>
                     <connections>
+                        <outlet property="bottomConstraint" destination="qSZ-Fh-Rer" id="l13-FE-EDa"/>
                         <outlet property="imageView" destination="BET-Nd-bM9" id="Clp-dV-hyj"/>
+                        <outlet property="leadingConstraint" destination="DGN-dr-Ep7" id="14W-y7-qPz"/>
+                        <outlet property="topConstraint" destination="hVa-yC-LB1" id="K0f-Ez-Dnm"/>
+                        <outlet property="trailingConstraint" destination="MEf-f4-lgl" id="SuT-UK-KSg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -103,7 +110,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="laF-bM-cFB">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timelineCells" id="laF-bM-cFB">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="laF-bM-cFB" id="wG6-TE-LCL">
