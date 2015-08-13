@@ -9,14 +9,28 @@ import Parse
 
 class ViewController: UIViewController {
   
+  //MARK: FilterConstants
+  let kLeadingConstraintBuffer : CGFloat = 40
+  let kTrailingConstraintBuffer : CGFloat = -40
+  let kTopConstraintBuffer : CGFloat = 40
+  let kBottomConstrainBuffer : CGFloat = 40
+  let kCompactBottomConstraintBuffer : CGFloat = 108
+  let kcompactCollectionViewConstraintBuffer: CGFloat = 38
+
+  
+  // MARK: Outlets
+  @IBOutlet weak var compactCollectionViewConstraint: NSLayoutConstraint!
+  @IBOutlet weak var compactBottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-  @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
-  @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var topConstraint: NSLayoutConstraint!
+  @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+  @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
   @IBOutlet weak var alertButton: UIButton!
   @IBOutlet weak var imageView: UIImageView!
   
   let picker : UIImagePickerController = UIImagePickerController()
+  
+  //var filters : [(UIImage, CIContext) -> (UIImage!)] = []
   
   
   let alert = UIAlertController(title: "Button Clicked", message: "Yes the button was clicked", preferredStyle: UIAlertControllerStyle.Alert)
@@ -44,9 +58,7 @@ class ViewController: UIViewController {
     }
       
     let colorInvertAction = UIAlertAction(title: "Color Invert", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      let image = CIImage(image: self.imageView.image)
-      let invertFiter = CIFilter(name: "CIColorInvert")
-      invertFiter.setValue(image, forKey: kCIInputImageKey)
+      filterCalling.colorInvertFromOriginalImage(UIImage(), context: CIContext(options: nil))
       
       let context = CIContext(options: nil)
       
@@ -54,11 +66,11 @@ class ViewController: UIViewController {
       let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
       let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
       
-      let outputImage = invertFiter.outputImage
-      let extent = outputImage.extent()
-      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
-      let finalImage = UIImage(CGImage: cgImage)
-      self.imageView.image = finalImage
+      //let outputImage = invertFiter.outputImage
+      //let extent = outputImage.extent()
+      //let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+      //let finalImage = UIImage(CGImage: cgImage)
+      //self.imageView.image = finalImage
     }
       
      let sepiaAction = UIAlertAction(title: "Sepia", style: UIAlertActionStyle.Default) { (alert) -> Void in
@@ -156,10 +168,12 @@ class ViewController: UIViewController {
     
   }
   func filterMode() {
-    leadingConstraint.constant = 40
-    trailingConstraint.constant = -40
-    topConstraint.constant = 40
-    bottomConstraint.constant = 40
+    leadingConstraint.constant = kLeadingConstraintBuffer
+    trailingConstraint.constant = kTrailingConstraintBuffer
+    topConstraint.constant = kTopConstraintBuffer
+    bottomConstraint.constant = kBottomConstrainBuffer
+    compactBottomConstraint.constant = kCompactBottomConstraintBuffer
+    compactCollectionViewConstraint.constant = kcompactCollectionViewConstraintBuffer
     
     UIView.animateWithDuration(0.3, animations: { () -> Void in
       self.view.layoutIfNeeded()
@@ -170,8 +184,15 @@ class ViewController: UIViewController {
   }
   
   func closeFilterMode() {
+    leadingConstraint.constant = 40
+    trailingConstraint.constant = -40
+    topConstraint.constant = 40
+    bottomConstraint.constant = 40
+    compactBottomConstraint.constant = 108
+    compactCollectionViewConstraint.constant = 38
     println("closing")
   }
+  
 }
 
 
