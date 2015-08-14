@@ -30,15 +30,21 @@ class ViewController: UIViewController {
   
   let picker : UIImagePickerController = UIImagePickerController()
   
-  //var filters : [(UIImage, CIContext) -> (UIImage!)] = []
+  var filters : [(UIImage, CIContext) -> (UIImage!)] = [FilterCalling.sepiaFilterFromOriginalImage, FilterCalling.colorInvertFromOriginalImage]
+  
+  let context = CIContext(options: nil)
+  var thumbnail : UIImage!
   
   
   let alert = UIAlertController(title: "Button Clicked", message: "Yes the button was clicked", preferredStyle: UIAlertControllerStyle.Alert)
   
 
+  //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+      
+      //MARK: Action Buttons
       
       let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alert) -> Void in
         println("Alert Canceled")
@@ -58,7 +64,7 @@ class ViewController: UIViewController {
     }
       
     let colorInvertAction = UIAlertAction(title: "Color Invert", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      filterCalling.colorInvertFromOriginalImage(UIImage(), context: CIContext(options: nil))
+      FilterCalling.colorInvertFromOriginalImage(UIImage(), context: CIContext(options: nil))
       
       let context = CIContext(options: nil)
       
@@ -153,6 +159,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
   
+  //MARK: ButtonsPressed
   @IBAction func buttonPressed(sender: AnyObject) {
     
 //    alert.modalPresentationStyle = UIModalPresentationStyle.Popover
@@ -179,23 +186,23 @@ class ViewController: UIViewController {
       self.view.layoutIfNeeded()
     })
     
-    let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "CloseFilterMode")
-    navigationItem.rightBarButtonItem = doneButton
+    let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "closeFilterMode")
+    navigationItem.leftBarButtonItem = doneButton
   }
   
   func closeFilterMode() {
-    leadingConstraint.constant = 40
-    trailingConstraint.constant = -40
-    topConstraint.constant = 40
-    bottomConstraint.constant = 40
-    compactBottomConstraint.constant = 108
-    compactCollectionViewConstraint.constant = 38
+    leadingConstraint.constant = kLeadingConstraintBuffer * -1
+    trailingConstraint.constant = kTrailingConstraintBuffer * -1
+    topConstraint.constant = kTopConstraintBuffer * -1
+    bottomConstraint.constant = kBottomConstrainBuffer * -1
+    compactBottomConstraint.constant = kCompactBottomConstraintBuffer * -1
+    compactCollectionViewConstraint.constant = kcompactCollectionViewConstraintBuffer * -1
     println("closing")
   }
   
 }
 
-
+//MARK : UIImagePickerControllerDelegate
 extension ViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info:[NSObject : AnyObject]) {
@@ -211,9 +218,21 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
     self.picker.dismissViewControllerAnimated(true, completion: nil)
     println("picker canceled")
   }
-  
-  
-  
-  
 }
+
+
+//MARK: UICollectionViewDataSource
+extension ViewController : UICollectionViewDataSource {
+  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return filters.count
+  }
+  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! ThumbnailCell
+    let filter = filters[indexPath.row]
+    let filteredImage = filter(thumbnail, context)
+    cell.imageView.image = filteredImage
+    return cell
+  }
+}
+
 

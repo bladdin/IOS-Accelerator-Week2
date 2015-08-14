@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class TimelineViewController : UIViewController{
+class TimelineViewController : UICollectionViewCell{
   
   
 }
