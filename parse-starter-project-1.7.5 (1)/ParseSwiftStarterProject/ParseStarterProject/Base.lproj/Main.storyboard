@@ -52,12 +52,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ndq-eD-uno">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ndq-eD-uno">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="Ndq-eD-uno" firstAttribute="top" secondItem="DtP-ir-W10" secondAttribute="topMargin" constant="-8" id="C68-EM-Fmu"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="Ndq-eD-uno" secondAttribute="bottom" constant="-8" id="Dij-Bi-i1n"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Ndq-eD-uno" secondAttribute="trailing" constant="-8" id="mes-bs-Zu8"/>
+                                            <constraint firstItem="Ndq-eD-uno" firstAttribute="leading" secondItem="DtP-ir-W10" secondAttribute="leadingMargin" constant="-8" id="vMM-1v-Ml1"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="Ndq-eD-uno" id="AO7-oY-wq5"/>
                                         </connections>
@@ -99,6 +105,7 @@
                     <navigationItem key="navigationItem" id="irf-2Z-WgE"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="bsI-cr-cZ6" id="Zac-Mi-vSl"/>
+                        <outlet property="collectionView" destination="N1A-D2-47b" id="oAl-eo-vG1"/>
                         <outlet property="compactBottomConstraint" destination="6NX-ER-oPN" id="rxs-6a-oyu"/>
                         <outlet property="compactCollectionViewConstraint" destination="1zW-CL-ynW" id="QJi-mm-pxo"/>
                         <outlet property="imageView" destination="BET-Nd-bM9" id="Clp-dV-hyj"/>

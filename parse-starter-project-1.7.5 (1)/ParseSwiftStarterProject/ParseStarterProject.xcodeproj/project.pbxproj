@@ -24,6 +24,8 @@
 		B5440DF41B7BB603009324F0 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5440DF31B7BB603009324F0 /* TimelineViewController.swift */; };
 		B544B8901B7E803A006B2B0D /* FilterCalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544B88F1B7E803A006B2B0D /* FilterCalling.swift */; };
 		B5903EF51B7E47D900291CE4 /* ThunbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5903EF41B7E47D900291CE4 /* ThunbnailCell.swift */; };
+		B5C5AB011B82478D00323E85 /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5AB001B82478D00323E85 /* ImageResizer.swift */; };
+		B5DE22451B7F0534007C07C9 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE22441B7F0534007C07C9 /* GalleryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		B5440DF31B7BB603009324F0 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		B544B88F1B7E803A006B2B0D /* FilterCalling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterCalling.swift; path = ../FilterCalling.swift; sourceTree = "<group>"; };
 		B5903EF41B7E47D900291CE4 /* ThunbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThunbnailCell.swift; path = ../ThunbnailCell.swift; sourceTree = "<group>"; };
+		B5C5AB001B82478D00323E85 /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
+		B5DE22441B7F0534007C07C9 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +97,6 @@
 				B5903EF01B7E46F500291CE4 /* Models */,
 				B5903EEF1B7E46EB00291CE4 /* Controllers */,
 				B5903EF11B7E46FB00291CE4 /* Views */,
-				B5440DF11B7BA6B3009324F0 /* Keys.swift */,
 				81BA81511A49DA1800E65899 /* Images.xcassets */,
 				81BA81481A49DA1800E65899 /* Supporting Files */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				81BA814C1A49DA1800E65899 /* ViewController.swift */,
+				B5C5AB001B82478D00323E85 /* ImageResizer.swift */,
 				B5440DF31B7BB603009324F0 /* TimelineViewController.swift */,
 			);
 			name = Controllers;
@@ -145,7 +149,9 @@
 		B5903EF01B7E46F500291CE4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B5440DF11B7BA6B3009324F0 /* Keys.swift */,
 				B544B88F1B7E803A006B2B0D /* FilterCalling.swift */,
+				B5DE22441B7F0534007C07C9 /* GalleryViewController.swift */,
 				B5903EF41B7E47D900291CE4 /* ThunbnailCell.swift */,
 			);
 			name = Models;
@@ -191,6 +197,7 @@
 				TargetAttributes = {
 					81BA81441A49DA1800E65899 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = A4CYB57ULV;
 					};
 				};
 			};
@@ -247,8 +254,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
+				B5DE22451B7F0534007C07C9 /* GalleryViewController.swift in Sources */,
 				B5903EF51B7E47D900291CE4 /* ThunbnailCell.swift in Sources */,
 				B5440DF41B7BB603009324F0 /* TimelineViewController.swift in Sources */,
+				B5C5AB011B82478D00323E85 /* ImageResizer.swift in Sources */,
 				B5440DF21B7BA6B3009324F0 /* Keys.swift in Sources */,
 				B544B8901B7E803A006B2B0D /* FilterCalling.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
@@ -353,6 +362,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -360,6 +371,7 @@
 				INFOPLIST_FILE = ParseStarterProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 			};
 			name = Debug;
@@ -369,6 +381,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -376,6 +390,7 @@
 				INFOPLIST_FILE = ParseStarterProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 			};
 			name = Release;

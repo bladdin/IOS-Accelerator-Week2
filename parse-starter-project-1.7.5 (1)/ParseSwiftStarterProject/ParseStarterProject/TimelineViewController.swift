@@ -9,7 +9,23 @@
 import UIKit
 import Parse
 
-class TimelineViewController : UICollectionViewCell{
-  
-  
-}
+//class TimelineViewController : UICollectionViewCell{
+//  
+//  override func viewDidLoad(){
+//    super.viewDidLoad(){
+//     let query = PFQuery(className: "Post")
+//      query.findObjectsInBackgroundWithBlock({ (result, error) -> Void in
+//        if let error = error{
+//        println(error.localizedDescription)
+//        }else{
+//          if let posts = results as? [PFObject] {
+//            
+//          }
+//          
+//        }
+//      })
+//      
+//      
+//    }
+//  }
+//}
