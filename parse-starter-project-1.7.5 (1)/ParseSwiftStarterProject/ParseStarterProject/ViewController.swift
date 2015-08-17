@@ -15,9 +15,11 @@ class ViewController: UIViewController {
   let kTopConstraintBuffer : CGFloat = 40
   let kBottomConstrainBuffer : CGFloat = 40
   let kCompactBottomConstraintBuffer : CGFloat = 108
-  let kCompactBottomConstraintBufferReturnToNormal: CGFloat = -1000
+  let kCompactBottomConstraintBufferReturnToNormal: CGFloat = -100
   let kcompactCollectionViewConstraintBuffer: CGFloat = 38
   let kThumbnailSize = CGSize(width: 100, height: 100)
+  let kReturnConstrains : CGFloat = 8
+  
 
   
   // MARK: Outlets
@@ -49,6 +51,8 @@ class ViewController: UIViewController {
   //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+      displayImage = UIImage(named: "placeHolder.jpeg")
         // Do any additional setup after loading the view, typically from a nib.
       
      //MARK: Initiate Action Buttons
@@ -201,12 +205,12 @@ class ViewController: UIViewController {
   
   //MARK: Close Filter Mode
   func closeFilterMode() {
-    leadingConstraint.constant = kLeadingConstraintBuffer * -1
-    trailingConstraint.constant = kTrailingConstraintBuffer * -1
-    topConstraint.constant = kTopConstraintBuffer * -1
-    bottomConstraint.constant = kBottomConstrainBuffer * -1
-    compactBottomConstraint.constant = kCompactBottomConstraintBufferReturnToNormal
-    compactCollectionViewConstraint.constant = kcompactCollectionViewConstraintBuffer * -1
+    leadingConstraint.constant = 8
+    trailingConstraint.constant = kReturnConstrains
+    topConstraint.constant = kReturnConstrains
+    bottomConstraint.constant = kReturnConstrains
+    compactBottomConstraint.constant = kReturnConstrains
+    compactCollectionViewConstraint.constant = kCompactBottomConstraintBufferReturnToNormal
     
     UIView.animateWithDuration(0.3, animations: { () -> Void in
       self.view.layoutIfNeeded()
@@ -237,7 +241,7 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
 //MARK: UICollectionViewDataSource
 extension ViewController : UICollectionViewDataSource {
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    println("filter count: \(filters.count)")
+    //println("filter count: \(filters.count)")
     return filters.count
   }
   
